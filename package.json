@@ -1,0 +1,29 @@
+{
+  "name": "mh_slackbot",
+  "version": "0.0.1",
+  "description": "Selects three random cards for mh hackday brainstorming",
+  "main": "mh_slackbot.js",
+  "dependencies": {
+    "@slack/client": "*",
+    "bluebird": "*",
+    "canvas": "^2.5.0",
+    "mz": "^2.7.0",
+    "request": "^2.88.0",
+    "sharp": "^0.22.1",
+    "sync-request": "^6.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/libbymiller/hackspace_slackbot.git"
+  },
+  "author": "libbymiller",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/libbymiller/hackspace_slackbot/issues"
+  },
+  "homepage": "https://github.com/libbymiller/hackspace_slackbot#readme"
+}
