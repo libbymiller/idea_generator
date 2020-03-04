@@ -4,7 +4,7 @@ Description=Idea Bot
 [Service]
 Type=simple
 WorkingDirectory=/opt/bots/idea_generator
-ExecStart=/usr/bin/env SLACK_API_TOKEN="xoxb-xxxxxx" /usr/local/bin/node idea_slackbot_from_trello.js col_name1 col_name2 col_name3
+ExecStart=/usr/bin/env SLACK_API_TOKEN="xxxxxx" /usr/local/bin/node idea_slackbot_from_trello.js col_name1 col_name2 col_name3
 Restart=on-failure
 StandardOutput=syslog
 SyslogIdentifier=idea_bot

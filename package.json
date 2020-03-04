@@ -1,7 +1,7 @@
 {
   "name": "mh_slackbot",
   "version": "0.0.1",
-  "description": "Selects three random cards for mh hackday brainstorming",
+  "description": "Selects three random cards for brainstorming",
   "main": "mh_slackbot.js",
   "dependencies": {
     "@slack/client": "*",
@@ -18,12 +18,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/libbymiller/hackspace_slackbot.git"
+    "url": "git+https://github.com/libbymiller/idea_generator.git"
   },
   "author": "libbymiller",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/libbymiller/hackspace_slackbot/issues"
+    "url": "https://github.com/libbymiller/idea_generator/issues"
   },
-  "homepage": "https://github.com/libbymiller/hackspace_slackbot#readme"
+  "homepage": "https://github.com/libbymiller/idea_generator#readme"
 }

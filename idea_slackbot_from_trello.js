@@ -15,7 +15,7 @@ const { registerFont, createCanvas } = require('canvas');
 let token = process.env.SLACK_API_TOKEN || '';
 let bot;
 
-let trello_json_url = ""; //something like https://trello.com/b/nnnnn.json" (needs to be public)
+let trello_url = "xxx"; //something like https://trello.com/b/nnnnn.json" (needs to be public, or get an api key)
 let output_dir = "_output";
 let prefix = "idea_";
 
@@ -31,6 +31,13 @@ if (process.argv.length < 4) {
   console.log("usage: node idea_slackbot_from_trello.js col_name1 col_name2 col_name3");
   process.exit()
 }
+
+let col1_name = process.argv[2].split(' ').join('_').toLowerCase();
+let col2_name = process.argv[3].split(' ').join('_').toLowerCase();
+let col3_name = process.argv[4].split(' ').join('_').toLowerCase();
+
+var our_col_names = [col1_name, col2_name, col3_name, "user_need","weird","positive"];
+
 
 // random int utility method
 
@@ -67,8 +74,6 @@ function send_single_image(image_file, text, message) {
 // canvas text wrap
 
 // get the trello data and sort it out
-
-let trello_url = "https://trello.com/b/mq64YZDi.json";
 
 let ua = "Mozilla/5.0 (X11; Linux i686; rv:10.0) Gecko/20100101 Firefox/10.0";
 
@@ -131,6 +136,10 @@ function save_images() {
   console.log("deleted folders");
 
   for (let list_name in lists_by_name) {
+
+   // restrict only to our currrent one otherwise there are a bazillion
+   if(our_col_names.includes(list_name)){
+
     let colour = colours[getRandomIntInclusive(0, colours.length - 1)];
     let list_id = lists_by_name[list_name];
     let list_length = cards_by_id[list_id].length;
@@ -165,6 +174,7 @@ function save_images() {
       }
       fs.writeFileSync(filename, canvas.toBuffer());
     }
+   }
   }
 
 }
@@ -199,10 +209,6 @@ slack.on('message', (message) => {
     if (message.text && (message.text.match("bot"))) {
 
       let m_text = message.text.replace(/[\.\,\/#!$%\^&\*;:{}=\-`~\(\)\?\"\'\“\@\<\>]/g, " ").toLowerCase();
-
-      let col1_name = process.argv[2].split(' ').join('_').toLowerCase();
-      let col2_name = process.argv[3].split(' ').join('_').toLowerCase();
-      let col3_name = process.argv[4].split(' ').join('_').toLowerCase();
 
       console.log("lists_by_name");
       console.log(lists_by_name);
@@ -297,7 +303,7 @@ slack.on('message', (message) => {
           slack.sendMessage(text, message.channel);
 
         } else if (m_text && m_text.match("help")) {
-          let text = "say 'bot user' to start with a user need, then 'bot cards' for a data source and an analogy. You can say 'bot weird', 'bot nicer', 'bot reload' (reload cards from trello)";
+          let text = "say 'bot cards' for three random cards. You can say 'bot user', 'bot weird', 'bot nicer', 'bot reload' (reload cards from trello)";
           slack.sendMessage(text, message.channel);
 
         } else {
